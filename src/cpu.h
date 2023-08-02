@@ -10,6 +10,26 @@
 #include <string>
 
 namespace rvemu {
+enum instr_t { ADD, XOR, ADDI };
+
+struct decode_info {
+    std::uint32_t opcode;
+    std::uint32_t funct3;
+    std::uint32_t funct7;
+
+    std::uint32_t rR1;
+    std::uint32_t rR2;
+    std::uint32_t wR;
+    bool wE;
+
+    std::int32_t imm_i;
+    std::int32_t imm_s;
+    std::int32_t imm_b;
+
+    std::int32_t imm_u;
+    std::int32_t imm_j;
+};
+
 class cpu {
  public:
     cpu();
@@ -33,6 +53,9 @@ class cpu {
     std::uint32_t cycles_;
     bool running_;
     std::uint32_t inst_;
+    decode_info decode_info_;
+    instr_t instr_type_;
+    std::int32_t rf_wdata;
 
  private:
     pc* pc_;
