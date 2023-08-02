@@ -7,6 +7,8 @@ cpu::cpu() {
 
     pc_   = new pc;
     imem_ = new memory(IROM_SIZE);
+    reg_ = new regfile;
+    alu_ = new alu;
     dmem_ = new memory(DRAM_SIZE);
 }
 
